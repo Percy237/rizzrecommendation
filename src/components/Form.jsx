@@ -34,9 +34,9 @@ const Form = ({ route, method }) => {
     }
   });
   return (
-    <form className=" w-[400px] flex flex-col gap-5" onSubmit={onSubmit}>
+    <form className="flex flex-col gap-5" onSubmit={onSubmit}>
       <h2 className="text-3xl text-white font-bold">{name}</h2>
-      <label className="text-gray-700 text-sm font-bold flex-1">
+      <label className="text-gray-700 text-sm font-bold">
         Username
         <input
           className="border rounded w-full py-1 px-2 font-normal"
@@ -47,7 +47,7 @@ const Form = ({ route, method }) => {
           <span className="text-red-500">{errors.username.message}</span>
         )}
       </label>
-      <label className="text-gray-700 text-sm font-bold flex-1">
+      <label className="text-gray-700 text-sm font-bold">
         Password
         <input
           className="border rounded w-full py-1 px-2 font-normal"
@@ -65,7 +65,7 @@ const Form = ({ route, method }) => {
         )}
       </label>
       <span className="flex justify-center items-center">
-        <DottedButton name={name} type="submit" />
+        <DottedButton name={name} isLoading={isLoading} type="submit" />
       </span>
     </form>
   );

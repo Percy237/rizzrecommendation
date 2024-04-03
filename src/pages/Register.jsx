@@ -1,12 +1,12 @@
 import Form from "../components/Form";
 const Register = () => {
   return (
-    <div className="flex justify-center items-center gap-10">
-      <div className="hidden md:block xl:block lg:block">
+    <div className="flex justify-center items-center w-[90%] flex-wrap-reverse gap-x-20 pt-10">
+      <div className="">
         <iframe
           src="https://giphy.com/embed/zhh9ivpOs0vtKc3Q0i"
-          width="480"
-          height="480"
+          width="320"
+          height="280"
           frameBorder="0"
           className="giphy-embed"
           allowFullScreen

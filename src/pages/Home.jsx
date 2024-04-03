@@ -22,15 +22,12 @@ const Home = () => {
 
   return (
     <div className="flex text-white">
-      <div className="basis-56 hidden md:block xl:block lg:block border-r-4 border-zinc-600 side-bar-height">
-        sidebar
-      </div>
       <div className="flex-1">
-        <div className="py-5  w-[500px] line-container mx-auto side flex flex-col gap-y-6 scrollable-div ">
+        <div className="py-5 md:w-[500px] lg:w-[500px] line-container mx-auto flex flex-col gap-y-6 scrollable-div ">
           {PickupLines.map((pickupLine) => (
             <div
               key={pickupLine.pickupLineId}
-              className="w-[450px] flex flex-col gap-2  p-4 rounded-md card-shadow  mx-auto"
+              className="w-[90%] md:w-[450px] lg:w-[450px] flex flex-col gap-2  p-4 rounded-md card-shadow  mx-auto"
             >
               <p>{pickupLine.pickup_line}</p>
               <p>
@@ -39,7 +36,7 @@ const Home = () => {
               <div className="flex items-center gap-x-2">
                 Rate:
                 <span>
-                  <Rating pickupLineId={pickupLine} />
+                  <Rating pickupLine={pickupLine} />
                 </span>
               </div>
             </div>

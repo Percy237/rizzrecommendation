@@ -3,18 +3,20 @@ import { DottedButton } from "./Button";
 
 const WelcomePage = () => {
   return (
-    <div className="flex flex-col justify-center items-center bg-black min-h-screen loved-by">
-      <div className="flex flex-col justify-center items-center gap-5">
-        <h1 className="text-xl xl:text-5xl text-white">
-          Welcome to the only pickupLine recommendation system you will ever
-          need !
-        </h1>
+    <div className=" bg-black  loved-by">
+      <div className="flex flex-col justify-center items-center">
+        <div className="text-center w-[90%] md:w-[70%] lg:w-[70%]">
+          <h1 className="text-3xl xl:text-5xl lg:text-5 md:text-5xl pt-4 text-white">
+            Welcome to the only pickupLine recommendation system you will ever
+            need !
+          </h1>
+        </div>
         <iframe
           src="https://giphy.com/embed/ZCNjymWszyazkph0z2"
-          width="400"
-          height="320"
+          width="320"
+          height="280"
           frameBorder="0"
-          className="giphy-embed sm:w-96 sm:h-80 md:w-400 md:h-320 lg:w-600 lg:h-480 xl:w-800 xl:h-640"
+          className="pt-4"
           allowFullScreen
         ></iframe>
         <p>
@@ -22,7 +24,7 @@ const WelcomePage = () => {
             via GIPHY
           </a>
         </p>
-        <div className="flex gap-x-5">
+        <div className="flex pt-4 gap-x-5">
           <Link to="register">
             <DottedButton name="register" />
           </Link>
