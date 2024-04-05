@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constant";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { DottedButton } from "../pages/Button";
+import { DottedButton } from "./Button";
 
 const Form = ({ route, method }) => {
   const [isLoading, setIsLoading] = useState(false);

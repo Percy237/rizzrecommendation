@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { DottedButton } from "./Button";
+import { DottedButton } from "../components/Button";
 
 const WelcomePage = () => {
   return (

@@ -1,10 +1,9 @@
 import ReactStars from "react-rating-stars-component";
 import api from "../api";
 import PropTypes from "prop-types";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Rating = ({ pickupLine }) => {
+  console.log(pickupLine.ratings[0]);
   const ratePickUpLine = (newRating) => {
     api
       .post(`/api/ratings/`, {
@@ -16,40 +15,20 @@ const Rating = ({ pickupLine }) => {
         console.log(res);
       })
       .catch((err) => {
-        toast("You have already rated this.", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        console.log(err);
       });
   };
-
-  // const updateRating = (newRating) => {
-  //   api
-  //     .patch(`/api/pickup-lines/${pickupLine.id}/rate/`, {
-  //       rating: newRating,
-  //     })
-  //     .then((res) => {
-  //       console.log("Rating updated successfully!");
-  //       console.log(res);
-  //     })
-  //     .catch((err) => alert(err));
-  // };
 
   const ratingChanged = (newRating) => {
     ratePickUpLine(newRating);
   };
+
   return (
     <div>
-      <ToastContainer />
       <ReactStars
         count={5}
         onChange={ratingChanged}
+        value={pickupLine.ratings[0]}
         isHalf={true}
         size={24}
         activeColor="#ffd700"
@@ -60,8 +39,12 @@ const Rating = ({ pickupLine }) => {
 
 Rating.propTypes = {
   pickupLine: PropTypes.shape({
-    id: PropTypes.number.isRequired, // Adjust the type according to your data
+    id: PropTypes.number.isRequired,
+    ratings: PropTypes.arrayOf(
+      PropTypes.shape({
+        rating: PropTypes.number.isRequired,
+      })
+    ).isRequired,
   }).isRequired,
 };
-
 export default Rating;
