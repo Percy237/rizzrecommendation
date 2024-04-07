@@ -37,9 +37,9 @@
   overflow-y: auto;
 }
 
-.scrollable-div::-webkit-scrollbar {
+/* .scrollable-div::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* HTML: <div class="loader"></div> */
 .loader {
