@@ -6,7 +6,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const Home = () => {
   const [pickupLines, setPickupLines] = useState([]);
   const [fetchNextData, setFetchNextData] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getPickupLines();
@@ -18,7 +17,6 @@ const Home = () => {
       .then((res) => {
         setPickupLines(res.data.results);
         setFetchNextData(res.data.next);
-        setLoading(false);
       })
       .catch((err) => console.log(err));
   };
@@ -32,35 +30,41 @@ const Home = () => {
             ...prevPickupLines,
             ...res.data.results,
           ]);
-          setFetchNextData(() => res.data.next);
+          setFetchNextData(res.data.next);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error("Error fetching next page:", err));
     }
   };
 
   return (
     <div className="text-white">
-      <InfiniteScroll
-        dataLength={pickupLines.length}
-        next={fetchNextPage}
-        hasMore={true}
-        loader={<h4 className="text-center">Loading...</h4>}
-        endMessage={
-          <p>
-            <b>Yay! you have seen it all</b>
-          </p>
-        }
+      <div
+        className=" py-5 md:w-[500px] lg:w-[500px] line-container mx-auto flex flex-col scrollable-div"
+        id="scrollableDiv"
       >
-        <div className="py-5  md:w-[500px] lg:w-[500px] line-container mx-auto flex flex-col gap-y-6 scrollable-div ">
-          {loading ? (
-            <p>Loading...</p>
-          ) : pickupLines.length === 0 ? (
+        <InfiniteScroll
+          dataLength={pickupLines.length}
+          next={fetchNextPage}
+          hasMore={true}
+          loader={
+            <h4 className="flex justify-center">
+              <span className="heart-loader"></span>
+            </h4>
+          }
+          endMessage={
+            <p className="text-center mt-4">Yay! You have seen it all.</p>
+          }
+          key={pickupLines.length}
+          scrollableTarget="scrollableDiv"
+          scrollThreshold="100px"
+        >
+          {pickupLines.length === 0 ? (
             <p>No pickup lines available</p>
           ) : (
             pickupLines.map((pickupLine) => (
               <div
-                key={pickupLine.pickupLineId}
-                className="w-[90%] md:w-[450px] lg:w-[450px] flex flex-col gap-2  p-4 rounded-md card-shadow  mx-auto"
+                key={pickupLine.pickup_line_id}
+                className="w-[90%] md:w-[450px] lg:w-[450px] flex flex-col mt-3 p-4 rounded-md card-shadow mx-auto"
               >
                 <p>{pickupLine.pickup_line}</p>
                 <p>
@@ -75,8 +79,8 @@ const Home = () => {
               </div>
             ))
           )}
-        </div>
-      </InfiniteScroll>
+        </InfiniteScroll>
+      </div>
     </div>
   );
 };

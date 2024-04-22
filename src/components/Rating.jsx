@@ -3,11 +3,10 @@ import api from "../api";
 import PropTypes from "prop-types";
 
 const Rating = ({ pickupLine }) => {
- 
   const ratePickUpLine = (newRating) => {
     api
       .post(`/api/ratings/`, {
-        pickup_line: pickupLine.id,
+        pickup_line: pickupLine.pickup_line_id,
         rating: newRating,
       })
       .then((res) => {
@@ -39,7 +38,7 @@ const Rating = ({ pickupLine }) => {
 
 Rating.propTypes = {
   pickupLine: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    pickup_line_id: PropTypes.number.isRequired,
   }).isRequired,
 };
 export default Rating;
