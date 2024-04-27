@@ -4,28 +4,101 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constant";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { DottedButton } from "./Button";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Form = ({ route, method }) => {
   const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
+  const fetchUserProfile = async () => {
+    try {
+      const res = await api.get("/api/userprofile/");
+      console.log(res.data);
+
+      if (res.data && Array.isArray(res.data)) {
+        if (res.data[0]?.preferences_set) {
+          toast.success("Here we go!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          });
+          setTimeout(() => {
+            navigate("/homepage");
+          }, 3000);
+        } else {
+          toast.success("Here we go!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          });
+          setTimeout(() => {
+            navigate("/preferences");
+          }, 3000);
+        }
+      } else {
+        toast.success("Here we go!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+        setTimeout(() => {
+          navigate("/preferences");
+        }, 3000);
+      }
+    } catch (error) {
+      console.error("Failed to fetch user profile:", error);
+    }
+  };
+
   const name = method === "login" ? "Login" : "Register";
   const navigate = useNavigate();
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
     setIsLoading(true);
     try {
       const res = await api.post(route, data);
       if (method === "login") {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-        navigate("/homepage");
+        await fetchUserProfile();
       } else {
-        navigate("/login");
+        toast.success("Registration successful", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
       }
     } catch (error) {
       console.log(error);
@@ -35,6 +108,7 @@ const Form = ({ route, method }) => {
   });
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
+      <ToastContainer />
       <h2 className="text-3xl text-white font-bold">{name}</h2>
       <label className="text-gray-700 text-sm font-bold">
         Username

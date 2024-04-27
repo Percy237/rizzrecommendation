@@ -9,7 +9,12 @@ const Header = () => {
           <img className="w-11" src={logo} alt="logo" />
           <div className="loved-by text-3xl">RizzRecommendation_</div>
         </div>
-        <ButtonWrapper />
+        <div className="flex justify-center items-center cursor-pointer">
+          <h3>My favorites</h3>
+        </div>
+        <div className="flex justify-center items-center">
+          <ButtonWrapper />
+        </div>
       </nav>
     </header>
   );

@@ -37,9 +37,9 @@ const Home = () => {
   };
 
   return (
-    <div className="text-white">
+    <div className="">
       <div
-        className=" py-5 md:w-[500px] lg:w-[500px] line-container mx-auto flex flex-col scrollable-div"
+        className=" py-5 md:w-[500px] lg:w-[500px]  line-container mx-auto flex flex-col scrollable-div"
         id="scrollableDiv"
       >
         <InfiniteScroll
@@ -48,7 +48,7 @@ const Home = () => {
           hasMore={true}
           loader={
             <h4 className="flex justify-center">
-              <span className="heart-loader"></span>
+              Loading more pickup lines...
             </h4>
           }
           endMessage={

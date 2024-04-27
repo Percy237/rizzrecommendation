@@ -75,7 +75,7 @@
 }
 
 .heart-loader {
-  width: 50px;
+  width: 25px;
   aspect-ratio: 1;
   color: #dc1818;
   background: radial-gradient(circle at 60% 65%, currentColor 62%, #0000 65%)
@@ -100,4 +100,23 @@
     transform: scale(1.8);
     opacity: 0;
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 10px;
+}
+
+.selected {
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }

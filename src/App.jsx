@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import WelcomePage from "./pages/WelcomePage";
 import Layout from "./layouts/Layout";
+import Preferences from "./pages/Preferences";
 
 function Logout() {
   localStorage.clear();
@@ -27,6 +28,16 @@ function App() {
             <ProtectedRoute>
               <Layout>
                 <Home />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/preferences"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Preferences />
               </Layout>
             </ProtectedRoute>
           }
